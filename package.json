@@ -35,6 +35,7 @@
     "yarn": ">= 1.21.1"
   },
   "prettier": {
-    "semi": false
+    "semi": false,
+    "singleQuote": true
   }
 }
