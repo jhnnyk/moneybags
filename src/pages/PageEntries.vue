@@ -35,10 +35,17 @@
       <!-- Add Entry Form -->
       <div class="row q-px-sm q-pb-sm q-col-gutter-sm bg-primary">
         <div class="col">
-          <q-input placeholder="Name" bg-color="white" outlined dense />
+          <q-input
+            v-model="addEntryForm.name"
+            placeholder="Name"
+            bg-color="white"
+            outlined
+            dense
+          />
         </div>
         <div class="col">
           <q-input
+            v-model="addEntryForm.amount"
             placeholder="Amount"
             input-class="text-right"
             bg-color="white"
@@ -58,7 +65,7 @@
 
 <script setup>
 // imports
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useAmountColorClass } from 'src/use/useAmountColorClass'
 
@@ -91,5 +98,11 @@ const balance = computed(() => {
   return entries.value.reduce((accumulator, { amount }) => {
     return accumulator + amount
   }, 0)
+})
+
+// add entry
+const addEntryForm = reactive({
+  name: '',
+  amount: null,
 })
 </script>
