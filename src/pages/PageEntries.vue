@@ -47,7 +47,7 @@
 
       <!-- Add Entry Form -->
       <q-form
-        @submit="addEntry"
+        @submit="addEntryFormSubmit"
         class="row q-px-sm q-pb-sm q-col-gutter-sm bg-primary"
       >
         <div class="col">
@@ -83,7 +83,7 @@
 <script setup>
 // imports
 import { ref, computed, reactive } from 'vue'
-import { uid, useQuasar } from 'quasar'
+import { useQuasar } from 'quasar'
 import { useStoreEntries } from 'src/stores/storeEntries'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useAmountColorClass } from 'src/use/useAmountColorClass'
@@ -139,14 +139,8 @@ const addEntryFormReset = () => {
   nameRef.value.focus()
 }
 
-const addEntry = () => {
-  const newEntry = {
-    id: uid(),
-    name: addEntryForm.name,
-    amount: addEntryForm.amount,
-  }
-  entries.value.push(newEntry)
-  addEntryFormReset()
+const addEntryFormSubmit = () => {
+  storeEntries.addEntry(addEntryForm)
 }
 
 // slide items
