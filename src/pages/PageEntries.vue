@@ -22,6 +22,7 @@
     </div>
 
     <q-footer class="bg-transparent">
+      <!-- Display Balance -->
       <div class="row q-mb-sm q-px-md q-py-sm shadow-up-3">
         <div class="col text-grey-7 text-h6">Balance</div>
         <div
@@ -33,7 +34,10 @@
       </div>
 
       <!-- Add Entry Form -->
-      <div class="row q-px-sm q-pb-sm q-col-gutter-sm bg-primary">
+      <q-form
+        @submit="addEntry"
+        class="row q-px-sm q-pb-sm q-col-gutter-sm bg-primary"
+      >
         <div class="col">
           <q-input
             v-model="addEntryForm.name"
@@ -45,7 +49,7 @@
         </div>
         <div class="col">
           <q-input
-            v-model="addEntryForm.amount"
+            v-model.number="addEntryForm.amount"
             placeholder="Amount"
             input-class="text-right"
             bg-color="white"
@@ -56,9 +60,9 @@
           />
         </div>
         <div class="col col-auto">
-          <q-btn round color="primary" icon="add" />
+          <q-btn round color="primary" icon="add" type="submit" />
         </div>
-      </div>
+      </q-form>
     </q-footer>
   </q-page>
 </template>
@@ -66,6 +70,7 @@
 <script setup>
 // imports
 import { ref, computed, reactive } from 'vue'
+import { uid } from 'quasar'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useAmountColorClass } from 'src/use/useAmountColorClass'
 
@@ -105,4 +110,13 @@ const addEntryForm = reactive({
   name: '',
   amount: null,
 })
+
+const addEntry = () => {
+  const newEntry = {
+    id: uid(),
+    name: addEntryForm.name,
+    amount: addEntryForm.amount,
+  }
+  entries.value.push(newEntry)
+}
 </script>
