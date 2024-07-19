@@ -35,15 +35,7 @@
 
     <q-footer class="bg-transparent">
       <!-- Display Balance -->
-      <div class="row q-mb-sm q-px-md q-py-sm shadow-up-3">
-        <div class="col text-grey-7 text-h6">Balance</div>
-        <div
-          class="col text-h6 text-right"
-          :class="useAmountColorClass(storeEntries.balance)"
-        >
-          {{ useCurrencify(storeEntries.balance) }}
-        </div>
-      </div>
+      <BalanceBar />
 
       <!-- Add Entry Form -->
       <q-form
@@ -87,6 +79,7 @@ import { useQuasar } from 'quasar'
 import { useStoreEntries } from 'src/stores/storeEntries'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useAmountColorClass } from 'src/use/useAmountColorClass'
+import BalanceBar from 'src/components/Entries/BalanceBar.vue'
 
 const storeEntries = useStoreEntries()
 const $q = useQuasar()
