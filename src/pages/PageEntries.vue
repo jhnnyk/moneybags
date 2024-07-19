@@ -3,7 +3,7 @@
     <div class="q-pa-md">
       <q-list bordered separator>
         <q-slide-item
-          v-for="entry in entries"
+          v-for="entry in storeEntries.entries"
           :key="entry.id"
           @right="onEntrySlideRight($event, entry)"
           left-color="positive"
@@ -84,9 +84,11 @@
 // imports
 import { ref, computed, reactive } from 'vue'
 import { uid, useQuasar } from 'quasar'
+import { useStoreEntries } from 'src/stores/storeEntries'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useAmountColorClass } from 'src/use/useAmountColorClass'
 
+const storeEntries = useStoreEntries()
 const $q = useQuasar()
 
 // entries
