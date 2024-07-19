@@ -169,7 +169,7 @@ const onEntrySlideRight = ({ reset }, entry) => {
     },
   })
     .onOk(() => {
-      deleteEntry(entry.id)
+      storeEntries.deleteEntry(entry.id)
     })
     .onCancel(() => {
       reset()
