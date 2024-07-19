@@ -39,9 +39,9 @@
         <div class="col text-grey-7 text-h6">Balance</div>
         <div
           class="col text-h6 text-right"
-          :class="useAmountColorClass(balance)"
+          :class="useAmountColorClass(storeEntries.balance)"
         >
-          {{ useCurrencify(balance) }}
+          {{ useCurrencify(storeEntries.balance) }}
         </div>
       </div>
 
