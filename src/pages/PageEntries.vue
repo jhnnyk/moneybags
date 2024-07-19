@@ -14,7 +14,7 @@
 
 <script setup>
 // imports
-import { ref } from "vue";
+import { ref } from "vue"
 
 // entries
 const entries = ref([
@@ -38,5 +38,5 @@ const entries = ref([
     name: "Unknown",
     amount: 0,
   },
-]);
+])
 </script>
