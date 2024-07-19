@@ -24,7 +24,12 @@
     <q-footer class="bg-transparent">
       <div class="row q-mb-sm q-px-md q-py-sm shadow-up-3">
         <div class="col text-grey-7 text-h6">Balance</div>
-        <div class="col text-grey-7 text-h6 text-right">+ $3,999.00</div>
+        <div
+          class="col text-h6 text-right"
+          :class="useAmountColorClass(balance)"
+        >
+          {{ useCurrencify(balance) }}
+        </div>
       </div>
 
       <!-- Add Entry Form -->
@@ -53,7 +58,7 @@
 
 <script setup>
 // imports
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useAmountColorClass } from 'src/use/useAmountColorClass'
 
@@ -80,4 +85,11 @@ const entries = ref([
     amount: 0,
   },
 ])
+
+// balance
+const balance = computed(() => {
+  return entries.value.reduce((accumulator, { amount }) => {
+    return accumulator + amount
+  }, 0)
+})
 </script>
