@@ -82,7 +82,7 @@
 
 <script setup>
 // imports
-import { ref, computed, reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { useQuasar } from 'quasar'
 import { useStoreEntries } from 'src/stores/storeEntries'
 import { useCurrencify } from 'src/use/useCurrencify'
@@ -90,37 +90,6 @@ import { useAmountColorClass } from 'src/use/useAmountColorClass'
 
 const storeEntries = useStoreEntries()
 const $q = useQuasar()
-
-// entries
-const entries = ref([
-  {
-    id: 'id1',
-    name: 'Salary',
-    amount: 4999.99,
-  },
-  {
-    id: 'id2',
-    name: 'Rent',
-    amount: -999,
-  },
-  {
-    id: 'id3',
-    name: 'Phone',
-    amount: -14.99,
-  },
-  {
-    id: 'id4',
-    name: 'Unknown',
-    amount: 0,
-  },
-])
-
-// balance
-const balance = computed(() => {
-  return entries.value.reduce((accumulator, { amount }) => {
-    return accumulator + amount
-  }, 0)
-})
 
 // add entry
 const nameRef = ref(null)
@@ -141,6 +110,7 @@ const addEntryFormReset = () => {
 
 const addEntryFormSubmit = () => {
   storeEntries.addEntry(addEntryForm)
+  addEntryFormReset()
 }
 
 // slide items
@@ -174,15 +144,5 @@ const onEntrySlideRight = ({ reset }, entry) => {
     .onCancel(() => {
       reset()
     })
-}
-
-// delete entry
-const deleteEntry = (entryId) => {
-  const index = entries.value.findIndex((entry) => entry.id === entryId)
-  entries.value.splice(index, 1)
-  $q.notify({
-    message: 'Entry deleted',
-    position: 'top',
-  })
 }
 </script>
