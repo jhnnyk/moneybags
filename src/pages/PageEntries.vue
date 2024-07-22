@@ -1,7 +1,9 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <q-list bordered separator>
+      <NothingHere v-if="!storeEntries.entries.length" />
+
+      <q-list v-else bordered separator>
         <SingleEntry
           v-for="entry in storeEntries.entries"
           :key="entry.id"
@@ -22,6 +24,7 @@
 
 <script setup>
 import SingleEntry from 'src/components/Entries/SingleEntry.vue'
+import NothingHere from 'src/components/Entries/NothingHere.vue'
 import BalanceBar from 'src/components/Entries/BalanceBar.vue'
 import AddEntry from 'src/components/Entries/AddEntry.vue'
 import { useStoreEntries } from 'src/stores/storeEntries'
