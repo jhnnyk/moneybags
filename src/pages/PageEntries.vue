@@ -2,34 +2,11 @@
   <q-page>
     <div class="q-pa-md">
       <q-list bordered separator>
-        <q-slide-item
+        <SingleEntry
           v-for="entry in storeEntries.entries"
           :key="entry.id"
-          @right="onEntrySlideRight($event, entry)"
-          left-color="positive"
-          right-color="negative"
-        >
-          <template v-slot:right>
-            <q-icon name="delete" />
-          </template>
-
-          <q-item>
-            <q-item-section
-              :class="useAmountColorClass(entry.amount)"
-              class="text-weight-bold"
-            >
-              {{ entry.name }}
-            </q-item-section>
-
-            <q-item-section
-              :class="useAmountColorClass(entry.amount)"
-              class="text-weight-bold"
-              side
-            >
-              {{ useCurrencify(entry.amount) }}
-            </q-item-section>
-          </q-item>
-        </q-slide-item>
+          :entry="entry"
+        />
       </q-list>
     </div>
 
@@ -44,47 +21,10 @@
 </template>
 
 <script setup>
-// imports
-import { useQuasar } from 'quasar'
-import { useStoreEntries } from 'src/stores/storeEntries'
-import { useCurrencify } from 'src/use/useCurrencify'
-import { useAmountColorClass } from 'src/use/useAmountColorClass'
+import SingleEntry from 'src/components/Entries/SingleEntry.vue'
 import BalanceBar from 'src/components/Entries/BalanceBar.vue'
 import AddEntry from 'src/components/Entries/AddEntry.vue'
+import { useStoreEntries } from 'src/stores/storeEntries'
 
 const storeEntries = useStoreEntries()
-const $q = useQuasar()
-
-// slide items
-const onEntrySlideRight = ({ reset }, entry) => {
-  $q.dialog({
-    title: 'Delete Entry',
-    message: `
-      Delete this entry?
-      <div class="q-mt-md text-weight-bold ${useAmountColorClass(
-        entry.amount
-      )}">
-        ${entry.name} : ${useCurrencify(entry.amount)}
-      </div>
-    `,
-    cancel: true,
-    persistent: true,
-    html: true,
-    ok: {
-      label: 'Delete',
-      color: 'negative',
-      noCaps: true,
-    },
-    cancel: {
-      color: 'primary',
-      noCaps: true,
-    },
-  })
-    .onOk(() => {
-      storeEntries.deleteEntry(entry.id)
-    })
-    .onCancel(() => {
-      reset()
-    })
-}
 </script>
