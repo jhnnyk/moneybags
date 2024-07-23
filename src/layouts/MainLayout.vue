@@ -17,6 +17,15 @@
             Moneyballs
           </div>
         </q-toolbar-title>
+
+        <q-btn
+          v-if="$route.fullPath === '/'"
+          @click="storeEntries.options.sort = !storeEntries.options.sort"
+          :label="!storeEntries.options.sort ? 'Sort' : 'Done'"
+          flat
+          no-caps
+          dense
+        ></q-btn>
       </q-toolbar>
     </q-header>
 
@@ -42,29 +51,32 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import NavLink from "components/Nav/NavLink.vue";
+import { ref } from 'vue'
+import { useStoreEntries } from 'src/stores/storeEntries'
+import NavLink from 'components/Nav/NavLink.vue'
 
 defineOptions({
-  name: "MainLayout",
-});
+  name: 'MainLayout',
+})
+
+const storeEntries = useStoreEntries()
 
 const navLinks = [
   {
-    title: "Entries",
-    icon: "savings",
-    link: "/",
+    title: 'Entries',
+    icon: 'savings',
+    link: '/',
   },
   {
-    title: "Settings",
-    icon: "settings",
-    link: "/settings",
+    title: 'Settings',
+    icon: 'settings',
+    link: '/settings',
   },
-];
+]
 
-const leftDrawerOpen = ref(false);
+const leftDrawerOpen = ref(false)
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
+  leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
