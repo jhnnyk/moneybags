@@ -74,6 +74,10 @@
           />
         </q-popup-edit>
       </q-item-section>
+
+      <q-item-section v-if="storeEntries.options.sort" side>
+        <q-icon name="reorder" color="primary" />
+      </q-item-section>
     </q-item>
   </q-slide-item>
 </template>
