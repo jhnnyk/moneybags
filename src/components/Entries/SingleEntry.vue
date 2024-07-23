@@ -4,6 +4,7 @@
     @right="onEntrySlideRight"
     left-color="positive"
     right-color="negative"
+    :class="{ 'bg-grey-2': entry.paid }"
   >
     <template v-slot:left>
       <q-icon name="done" />
@@ -14,7 +15,10 @@
 
     <q-item>
       <q-item-section
-        :class="useAmountColorClass(entry.amount)"
+        :class="[
+          useAmountColorClass(entry.amount),
+          { 'text-strike': entry.paid },
+        ]"
         class="text-weight-bold"
       >
         {{ entry.name }}
@@ -40,7 +44,10 @@
       </q-item-section>
 
       <q-item-section
-        :class="useAmountColorClass(entry.amount)"
+        :class="[
+          useAmountColorClass(entry.amount),
+          { 'text-strike': entry.paid },
+        ]"
         class="text-weight-bold"
         side
       >
