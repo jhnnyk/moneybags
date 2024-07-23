@@ -5,7 +5,8 @@ export const useStoreSettings = defineStore('settings', () => {
   // state
   const settings = reactive({
     promptToDelete: true,
-    showRunningBalance: true,
+    showRunningBalance: false,
+    currencySymbol: '$',
   })
 
   // return

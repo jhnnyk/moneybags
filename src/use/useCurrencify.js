@@ -1,3 +1,7 @@
+import { useStoreSettings } from 'src/stores/storeSettings'
+
+const storeSettings = useStoreSettings()
+
 export function useCurrencify(amount) {
   // format: "+ $ 4,999.99" | "- $ 999.00"
   let posNegSymbol = ''
@@ -7,7 +11,7 @@ export function useCurrencify(amount) {
     posNegSymbol = '-'
   }
 
-  const currencySymbol = '$'
+  const currencySymbol = storeSettings.settings.currencySymbol
   const amountPositive = Math.abs(amount)
 
   const amountFormatted = amountPositive.toLocaleString('en-US', {

@@ -27,6 +27,17 @@
             ></q-toggle>
           </q-item-section>
         </q-item>
+
+        <!-- Set Currency Symbol -->
+        <q-item tag="label" v-ripple>
+          <q-item-section>
+            <q-input
+              v-model="storeSettings.settings.currencySymbol"
+              label="Currency Symbol"
+              outlined
+            />
+          </q-item-section>
+        </q-item>
       </q-list>
     </div>
   </q-page>
