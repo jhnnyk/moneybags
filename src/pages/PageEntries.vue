@@ -4,7 +4,12 @@
       <NothingHere v-if="!storeEntries.entries.length" />
 
       <q-list v-else bordered separator>
-        <Sortable :list="storeEntries.entries" item-key="id" tag="div">
+        <Sortable
+          :list="storeEntries.entries"
+          :options="{ handle: '.handle' }"
+          item-key="id"
+          tag="div"
+        >
           <template #item="{ element, index }">
             <SingleEntry :key="element.id" :entry="element" />
           </template>
