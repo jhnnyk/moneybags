@@ -15,6 +15,7 @@
       >
         {{ entry.name }}
         <q-popup-edit
+          @save="onNameUpdate"
           :model-value="entry.name"
           v-slot="scope"
           :cover="false"
@@ -41,6 +42,7 @@
       >
         {{ useCurrencify(entry.amount) }}
         <q-popup-edit
+          @save="onAmountUpdate"
           :model-value="entry.amount"
           v-slot="scope"
           :cover="false"
@@ -80,6 +82,7 @@ const props = defineProps({
 })
 const $q = useQuasar()
 
+// slide to the left (right side action) to delete
 const onEntrySlideRight = ({ reset }) => {
   $q.dialog({
     title: 'Delete Entry',
@@ -110,5 +113,13 @@ const onEntrySlideRight = ({ reset }) => {
     .onCancel(() => {
       reset()
     })
+}
+
+const onNameUpdate = (value) => {
+  storeEntries.updateEntry(props.entry.id, { name: value })
+}
+
+const onAmountUpdate = (value) => {
+  storeEntries.updateEntry(props.entry.id, { amount: value })
 }
 </script>
