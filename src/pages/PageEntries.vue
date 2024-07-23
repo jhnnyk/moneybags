@@ -4,11 +4,11 @@
       <NothingHere v-if="!storeEntries.entries.length" />
 
       <q-list v-else bordered separator>
-        <SingleEntry
-          v-for="entry in storeEntries.entries"
-          :key="entry.id"
-          :entry="entry"
-        />
+        <Sortable :list="storeEntries.entries" item-key="id" tag="div">
+          <template #item="{ element, index }">
+            <SingleEntry :key="element.id" :entry="element" />
+          </template>
+        </Sortable>
       </q-list>
     </div>
 
@@ -23,6 +23,7 @@
 </template>
 
 <script setup>
+import { Sortable } from 'sortablejs-vue3'
 import SingleEntry from 'src/components/Entries/SingleEntry.vue'
 import NothingHere from 'src/components/Entries/NothingHere.vue'
 import BalanceBar from 'src/components/Entries/BalanceBar.vue'
