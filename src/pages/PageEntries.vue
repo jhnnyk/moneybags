@@ -22,7 +22,13 @@
 
     <q-footer class="bg-transparent">
       <!-- Display Balance -->
-      <BalanceBar />
+      <Transition
+        appear
+        enter-active-class="animated fadeInUp"
+        leave-active-class="animated fadeOutDown"
+      >
+        <BalanceBar v-if="storeEntries.entries.length" />
+      </Transition>
 
       <!-- Add Entry Form -->
       <AddEntry />
