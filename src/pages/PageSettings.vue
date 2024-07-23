@@ -4,14 +4,26 @@
       <q-list bordered padding>
         <q-item-label header>Entries</q-item-label>
 
+        <!-- Prompt to Delete -->
         <q-item tag="label" v-ripple>
           <q-item-section>
             <q-item-label>Prompt to Delete</q-item-label>
           </q-item-section>
-
           <q-item-section side>
             <q-toggle
               v-model="storeSettings.settings.promptToDelete"
+            ></q-toggle>
+          </q-item-section>
+        </q-item>
+
+        <!-- Show Running Balance -->
+        <q-item tag="label" v-ripple>
+          <q-item-section>
+            <q-item-label>Show Running Balance</q-item-label>
+          </q-item-section>
+          <q-item-section side>
+            <q-toggle
+              v-model="storeSettings.settings.showRunningBalance"
             ></q-toggle>
           </q-item-section>
         </q-item>
