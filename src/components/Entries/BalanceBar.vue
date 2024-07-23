@@ -5,7 +5,20 @@
       class="col text-h6 text-right"
       :class="useAmountColorClass(storeEntries.balance)"
     >
-      {{ useCurrencify(storeEntries.balance) }}
+      <div class="row">
+        <div class="col">
+          {{ useCurrencify(storeEntries.balance) }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col text-caption text-grey-6">
+          Paid:
+          <span class="text-weight-bold" :class="useAmountColorClass(-1244.34)">
+            {{ useCurrencify(-1244.34) }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
