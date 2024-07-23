@@ -48,6 +48,21 @@ export const useStoreEntries = defineStore('entries', () => {
     }, 0)
   })
 
+  const runningBalances = computed(() => {
+    let runningBals = []
+    let currentRunningBalance = 0
+
+    if (entries.value.length) {
+      entries.value.forEach((entry) => {
+        let entryAmount = entry.amount ? entry.amount : 0
+        currentRunningBalance = currentRunningBalance + entryAmount
+        runningBals.push(currentRunningBalance)
+      })
+    }
+
+    return runningBals
+  })
+
   // actions
   const addEntry = (addEntryForm) => {
     const newEntry = Object.assign({}, addEntryForm, { id: uid(), paid: false })
@@ -88,6 +103,7 @@ export const useStoreEntries = defineStore('entries', () => {
     // getters
     balance,
     balancePaid,
+    runningBalances,
 
     // actions
     addEntry,

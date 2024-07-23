@@ -13,8 +13,8 @@
           item-key="id"
           tag="div"
         >
-          <template #item="{ element }">
-            <SingleEntry :key="element.id" :entry="element" />
+          <template #item="{ element, index }">
+            <SingleEntry :key="element.id" :entry="element" :index="index" />
           </template>
         </Sortable>
       </q-list>
