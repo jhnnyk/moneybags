@@ -38,6 +38,12 @@ export const useStoreEntries = defineStore('entries', () => {
     }, 0)
   })
 
+  const balancePaid = computed(() => {
+    return entries.value.reduce((accumulator, { amount, paid }) => {
+      return paid ? accumulator + amount : accumulator
+    }, 0)
+  })
+
   // actions
   const addEntry = (addEntryForm) => {
     const newEntry = Object.assign({}, addEntryForm, { id: uid(), paid: false })
@@ -70,6 +76,7 @@ export const useStoreEntries = defineStore('entries', () => {
 
     // getters
     balance,
+    balancePaid,
 
     // actions
     addEntry,
