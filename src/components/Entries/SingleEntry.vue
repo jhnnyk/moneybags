@@ -1,9 +1,13 @@
 <template>
   <q-slide-item
+    @left="onEntrySlideLeft"
     @right="onEntrySlideRight"
     left-color="positive"
     right-color="negative"
   >
+    <template v-slot:left>
+      <q-icon name="done" />
+    </template>
     <template v-slot:right>
       <q-icon name="delete" />
     </template>
@@ -81,6 +85,12 @@ const props = defineProps({
   },
 })
 const $q = useQuasar()
+
+// slide to the right (for left side action)
+const onEntrySlideLeft = ({ reset }) => {
+  storeEntries.updateEntry(props.entry.id, { paid: !props.entry.paid })
+  reset()
+}
 
 // slide to the left (right side action) to delete
 const onEntrySlideRight = ({ reset }) => {
