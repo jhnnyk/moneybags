@@ -20,15 +20,16 @@
           :cover="false"
           :offset="[16, 12]"
           anchor="top left"
+          label-set="Ok"
           auto-save
+          buttons
         >
           <q-input
             v-model="scope.value"
             @keyup.enter="scope.set"
-            input-class="text-weight-bold"
+            input-class="text-weight-bold letter-spacing-none"
             dense
             autofocus
-            counter
           />
         </q-popup-edit>
       </q-item-section>
