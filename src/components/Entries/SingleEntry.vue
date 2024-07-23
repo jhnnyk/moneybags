@@ -87,11 +87,13 @@
 <script setup>
 import { useQuasar } from 'quasar'
 import { useStoreEntries } from 'src/stores/storeEntries'
+import { useStoreSettings } from 'src/stores/storeSettings'
 import { useCurrencify } from 'src/use/useCurrencify'
 import { useAmountColorClass } from 'src/use/useAmountColorClass'
 import vSelectAll from 'src/directives/directiveSelectAll'
 
 const storeEntries = useStoreEntries()
+const storeSettings = useStoreSettings()
 const props = defineProps({
   entry: {
     type: Object,
@@ -108,6 +110,14 @@ const onEntrySlideLeft = ({ reset }) => {
 
 // slide to the left (right side action) to delete
 const onEntrySlideRight = ({ reset }) => {
+  if (storeSettings.settings.promptToDelete) {
+    promptToDelete(reset)
+  } else {
+    storeEntries.deleteEntry(props.entry.id)
+  }
+}
+
+const promptToDelete = (reset) => {
   $q.dialog({
     title: 'Delete Entry',
     message: `
