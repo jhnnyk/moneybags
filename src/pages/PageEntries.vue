@@ -5,6 +5,7 @@
 
       <q-list v-else bordered separator>
         <Sortable
+          @end="storeEntries.sortEnd"
           :list="storeEntries.entries"
           :options="{ handle: '.handle' }"
           item-key="id"
