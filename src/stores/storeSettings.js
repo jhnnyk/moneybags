@@ -8,14 +8,15 @@ export const useStoreSettings = defineStore('settings', () => {
     promptToDelete: true,
     showRunningBalance: false,
     currencySymbol: '$',
-    darkMode: false, // true | false | 'auto
+    darkMode: true, // true | false | 'auto #TODO: set back to false
   })
 
   watch(
     () => settings.darkMode,
     (value) => {
       Dark.set(value)
-    }
+    },
+    { immediate: true }
   )
 
   // return
