@@ -8,7 +8,7 @@
         v-model="addEntryForm.name"
         ref="nameRef"
         placeholder="Name"
-        bg-color="white"
+        :bg-color="useLightOrDark('white', 'black')"
         outlined
         dense
       />
@@ -18,7 +18,7 @@
         v-model.number="addEntryForm.amount"
         placeholder="Amount"
         input-class="text-right"
-        bg-color="white"
+        :bg-color="useLightOrDark('white', 'black')"
         type="number"
         step="0.01"
         outlined
@@ -34,6 +34,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useStoreEntries } from 'src/stores/storeEntries'
+import { useLightOrDark } from 'src/use/useLightOrDark'
 
 const storeEntries = useStoreEntries()
 const nameRef = ref(null)
